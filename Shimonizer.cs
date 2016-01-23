@@ -41,7 +41,6 @@ namespace ﾒｲﾝ {
 	class ｸﾗｽﾒｲﾝ {
         static readonly string 改行 = "\n";
         static bool 読み書き(string ﾌｧｲﾙの場所, bool 書き込みますか) {
-
             var 読み込みﾊﾞｯﾌｧー = new StringBuilder();
             using(var ｽﾄﾘーﾑﾘーﾀﾞー = new StreamReader(ﾌｧｲﾙの場所, Encoding.UTF8)) {
                 string 行;
@@ -49,27 +48,29 @@ namespace ﾒｲﾝ {
                    読み込みﾊﾞｯﾌｧー.Append(行.ｼﾓﾅｲｽﾞ()).Append(改行);
                 }
             }
+
             if (!書き込みますか) {
                 Console.Write(読み込みﾊﾞｯﾌｧー.ToString());
                 return true;
             }
+
             using(var ｽﾄﾘーﾑﾗｲﾀー =new StreamWriter(ﾌｧｲﾙの場所, false, Encoding.UTF8)) {
                 ｽﾄﾘーﾑﾗｲﾀー.Write(読み込みﾊﾞｯﾌｧー);
             }
             return true;
         }
 
-        static void Main(string[] args)
+        static void Main(string[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
 		{
             bool 書き込むんですか = false;
-            foreach(var s in args) {
-                if (s.StartsWith("-")){
-                     if(s.Equals("-w")) {
+            foreach(var 分離された引数 in ｺﾏﾝﾄﾞﾗｲﾝ引数) {
+                if (分離された引数.StartsWith("-")){
+                     if(分離された引数.Equals("-w")) {
                          書き込むんですか = true;
                      }
                      continue;
                 }
-                読み書き(s, 書き込むんですか);
+                読み書き(分離された引数, 書き込むんですか);
             }
 		}
 	}
