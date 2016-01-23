@@ -38,31 +38,43 @@ namespace ﾒｲﾝ {
             return 閣下;
         }
     }
-	class ｸﾗｽﾒｲﾝ {
+
+    class ｸﾗｽﾒｲﾝ {
         static readonly string 改行 = "\n";
-        static bool 読み書き(string ﾌｧｲﾙの場所, bool 書き込みますか) {
+        static readonly string 虚無 = null;
+
+        static bool 読み書き(string ﾌｧｲﾙの場所, Encoding 文字ｺーﾄﾞ, bool 書き込むんですか) {
             var 読み込みﾊﾞｯﾌｧー = new StringBuilder();
-            using(var ｽﾄﾘーﾑﾘーﾀﾞー = new StreamReader(ﾌｧｲﾙの場所, Encoding.UTF8)) {
+
+            using (var ｽﾄﾘーﾑﾘーﾀﾞー =
+                    ((虚無 != ﾌｧｲﾙの場所) ? new StreamReader(ﾌｧｲﾙの場所, 文字ｺーﾄﾞ) : Console.In))
+            {
                 string 行;
                 while ((行 = ｽﾄﾘーﾑﾘーﾀﾞー.ReadLine()) != null) {
                    読み込みﾊﾞｯﾌｧー.Append(行.ｼﾓﾅｲｽﾞ()).Append(改行);
                 }
             }
 
-            if (!書き込みますか) {
+            if ((! 書き込むんですか)) {
                 Console.Write(読み込みﾊﾞｯﾌｧー.ToString());
                 return true;
             }
 
-            using(var ｽﾄﾘーﾑﾗｲﾀー =new StreamWriter(ﾌｧｲﾙの場所, false, Encoding.UTF8)) {
+            using(var ｽﾄﾘーﾑﾗｲﾀー =new StreamWriter(ﾌｧｲﾙの場所, false, 文字ｺーﾄﾞ)) {
                 ｽﾄﾘーﾑﾗｲﾀー.Write(読み込みﾊﾞｯﾌｧー);
             }
             return true;
         }
 
         static void Main(string[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
-		{
+        {
+            var 文字ｺーﾄﾞ = Encoding.UTF8;
             bool 書き込むんですか = false;
+            if (0 == ｺﾏﾝﾄﾞﾗｲﾝ引数.Length) {
+                読み書き(虚無, 文字ｺーﾄﾞ, 書き込むんですか);
+                return;
+            }
+
             foreach(var 分離された引数 in ｺﾏﾝﾄﾞﾗｲﾝ引数) {
                 if (分離された引数.StartsWith("-")){
                      if(分離された引数.Equals("-w")) {
@@ -70,8 +82,8 @@ namespace ﾒｲﾝ {
                      }
                      continue;
                 }
-                読み書き(分離された引数, 書き込むんですか);
+                読み書き(分離された引数, 文字ｺーﾄﾞ, 書き込むんですか);
             }
-		}
-	}
+        }
+    }
 }
