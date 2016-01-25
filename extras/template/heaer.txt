@@ -1,0 +1,20 @@
+#!/bin/sh
+EMP=""
+which uuencode >/dev/null 2>&1	|| EMP="uuencode"
+which uudecode >/dev/null 2>&1	|| EMP="uudecode"
+which gzip	>/dev/null 2>&1	|| EMP="gzip"
+which mcs	>/dev/null 2>&1		|| EMP="mcs"
+which mono	>/dev/null 2>&1	|| EMP="mono"
+
+if [ "x" != "x${EMP}" ];then
+	echo "<${EMP}> がｲﾝｽﾄーﾙされていません"
+	exit
+fi
+
+TMP_CS=`mktemp`
+TMP_EXE=`mktemp`
+rm  ${TMP_CS} ${TMP_EXE}
+TMP_CS="${TMP_CS}.cs"
+TMP_EXE="${TMP_EXE}.exe"
+
+cat <<EOD | uudecode -o /dev/stdout | gzip -dc >$TMP_CS

@@ -1,0 +1,11 @@
+EOD
+
+trap "rm -f ${TMP_EXE} ${TMP_CS}" 1 2 3 15
+
+mcs /out:${TMP_EXE} /r:System.Xml.Linq ${TMP_CS} 
+if [ -f ${TMP_EXE} ];then
+	mono ${TMP_EXE} $@
+fi
+
+rm -f ${TMP_CS} ${TMP_EXE}
+
