@@ -43,7 +43,12 @@ namespace ﾒｲﾝ {
         static readonly string 改行 = "\n";
         static readonly string 虚無 = null;
 
-        static bool 読み書き(string ﾌｧｲﾙの場所, Encoding 文字ｺーﾄﾞ, bool 書き込むんですか) {
+        enum その後 {
+            何もしないんですよ,
+            書き込むんですよ
+        }
+
+        static bool 読み書き(string ﾌｧｲﾙの場所, Encoding 文字ｺーﾄﾞ, その後 どうするんですか) {
             var 読み込みﾊﾞｯﾌｧー = new StringBuilder();
 
             using (var ｽﾄﾘーﾑﾘーﾀﾞー =
@@ -55,7 +60,7 @@ namespace ﾒｲﾝ {
                 }
             }
 
-            if ((! 書き込むんですか)) {
+            if (その後.何もしないんですよ == どうするんですか) {
                 Console.Write(読み込みﾊﾞｯﾌｧー.ToString());
                 return true;
             }
@@ -69,20 +74,20 @@ namespace ﾒｲﾝ {
         static void Main(string[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
         {
             var 文字ｺーﾄﾞ = Encoding.UTF8;
-            bool 書き込むんですか = false;
+            その後 どうするんですか = その後.何もしないんですよ;
             if (0 == ｺﾏﾝﾄﾞﾗｲﾝ引数.Length) {
-                読み書き(虚無, 文字ｺーﾄﾞ, 書き込むんですか);
+                読み書き(虚無, 文字ｺーﾄﾞ, その後.何もしないんですよ);
                 return;
             }
 
             foreach(var 分離された引数 in ｺﾏﾝﾄﾞﾗｲﾝ引数) {
                 if (分離された引数.StartsWith("-")){
                      if(分離された引数.Equals("-w")) {
-                         書き込むんですか = true;
+                         どうするんですか = その後.書き込むんですよ;
                      }
                      continue;
                 }
-                読み書き(分離された引数, 文字ｺーﾄﾞ, 書き込むんですか);
+                読み書き(分離された引数, 文字ｺーﾄﾞ, どうするんですか);
             }
         }
     }
