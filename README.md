@@ -12,7 +12,9 @@ ex.
 
 
 #### JITｼﾓﾅｲｻﾞー
-extras/mk_jit_shimonizer.sh
+% cd extras/
+
+% ./mk_jit_shimonizer.sh [-online]
 
 jitﾊﾞーｼﾞｮﾝを生成します
 

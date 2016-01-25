@@ -2,9 +2,15 @@
 if [ "x" = "x${OUT}" ];then
 	OUT=shimonizer.sh
 fi
-
+SRC_URL=https://raw.githubusercontent.com/sazae657/Shimonizer/master/Shimonizer.cs
+SRC=../Shimonizer.cs
 cat template/heaer.txt >${OUT}
-cat ../Shimonizer.cs | gzip -9 | uuencode -m Shimonizer.cs >>${OUT}
+if [ "x-online" = "x$@" ];then
+	curl ${SRC_URL} | gzip -9 | uuencode -m Shimonizer.cs >>${OUT}
+else
+	cat ${SRC} | gzip -9 | uuencode -m Shimonizer.cs >>${OUT}
+fi
+
 cat template/footer.txt >>${OUT}
 chmod +x ${OUT}
 
