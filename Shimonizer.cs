@@ -73,7 +73,7 @@ namespace ﾒｲﾝ {
 
         static void Main(string[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
         {
-            var 文字ｺーﾄﾞ = Encoding.UTF8;
+            var 文字ｺーﾄﾞ = new System.Text.UTF8Encoding(false);
             その後 どうするんですか = その後.何もしないんですよ;
             if (0 == ｺﾏﾝﾄﾞﾗｲﾝ引数.Length) {
                 読み書き(虚無, 文字ｺーﾄﾞ, その後.何もしないんですよ);
@@ -84,6 +84,9 @@ namespace ﾒｲﾝ {
                 if (分離された引数.StartsWith("-")){
                      if(分離された引数.Equals("-w")) {
                          どうするんですか = その後.書き込むんですよ;
+                     }
+                     else if(分離された引数.Equals("-bom")) {
+                         文字ｺーﾄﾞ = new System.Text.UTF8Encoding(true);
                      }
                      continue;
                 }
