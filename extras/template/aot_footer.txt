@@ -1,0 +1,9 @@
+EOD
+
+trap "rm -f ${TMP_EXE} " 1 2 3 15
+if [ -f ${TMP_EXE} ];then
+	mono ${TMP_EXE} $@
+fi
+
+rm -f ${TMP_EXE}
+

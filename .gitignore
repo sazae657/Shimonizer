@@ -1,1 +1,3 @@
 *.exe
+extras/shimonizer.sh
+extras/.*.cs
