@@ -3,11 +3,16 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using 文字列 = System.String;
+using 文字 = System.Char;
+using 文字ｺーﾄﾞー = System.Text.Encoding;
+using その結果 = System.Boolean;
+using 妄想配列 = System.Collections.Generic.Dictionary<char, string>;
 
 namespace ﾒｲﾝ {
     public static class ｼﾓﾅｲｻﾞーExtension
     {
-        static Dictionary<char, string> ｼﾓﾅｲｽﾞﾃーﾌﾞﾙ = new Dictionary<char, string>{
+        static 妄想配列 ｼﾓﾅｲｽﾞﾃーﾌﾞﾙ = new 妄想配列{
             {'ガ',"ｶﾞ"},{'ギ',"ｷﾞ"},{'グ',"ｸﾞ"},{'ゲ',"ｹﾞ"},{'ゴ',"ｺﾞ"},
             {'ザ',"ｻﾞ"},{'ジ',"ｼﾞ"},{'ズ',"ｽﾞ"},{'ゼ',"ｾﾞ"},{'ゾ',"ｿﾞ"},
             {'ダ',"ﾀﾞ"},{'ヂ',"ﾁﾞ"},{'ヅ',"ﾂﾞ"},{'デ',"ﾃﾞ"},{'ド',"ﾄﾞ"},
@@ -28,7 +33,7 @@ namespace ﾒｲﾝ {
             {'ャ',"ｬ"},{'ュ',"ｭ"},{'ョ',"ｮ"},{'ッ',"ｯ"}
         };
 
-        public static string ｼﾓﾅｲｽﾞ(this string 閣下)
+        public static 文字列 ｼﾓﾅｲｽﾞ(this 文字列 閣下)
         {
             foreach(var 相当 in ｼﾓﾅｲｽﾞﾃーﾌﾞﾙ) {
                 if (閣下.Contains(相当.Key)) {
@@ -40,40 +45,43 @@ namespace ﾒｲﾝ {
     }
 
     class ｸﾗｽﾒｲﾝ {
-        static readonly string 改行 = "\n";
-        static readonly string 虚無 = null;
+        static readonly 文字列 改行 = "\n";
+        static readonly 文字列 虚無 = null;
+
+        static readonly その結果 真 = true;
+        static readonly その結果 偽 = false;
 
         enum その後 {
             何もしないんですよ,
             書き込むんですよ
         }
 
-        static bool 読み書き(string ﾌｧｲﾙの場所, Encoding 文字ｺーﾄﾞ, その後 どうするんですか) {
+        static その結果 読み書き(文字列 ﾌｧｲﾙの場所, 文字ｺーﾄﾞー 文字ｺーﾄﾞ, その後 どうするんですか) {
             var 読み込みﾊﾞｯﾌｧー = new StringBuilder();
 
             using (var ｽﾄﾘーﾑﾘーﾀﾞー =
                     ((虚無 != ﾌｧｲﾙの場所) ? new StreamReader(ﾌｧｲﾙの場所, 文字ｺーﾄﾞ) : Console.In))
             {
-                string 行;
-                while ((行 = ｽﾄﾘーﾑﾘーﾀﾞー.ReadLine()) != null) {
+                文字列 行;
+                while ((行 = ｽﾄﾘーﾑﾘーﾀﾞー.ReadLine()) != 虚無) {
                    読み込みﾊﾞｯﾌｧー.Append(行.ｼﾓﾅｲｽﾞ()).Append(改行);
                 }
             }
 
             if (その後.何もしないんですよ == どうするんですか) {
                 Console.Write(読み込みﾊﾞｯﾌｧー.ToString());
-                return true;
+                return 真;
             }
 
-            using(var ｽﾄﾘーﾑﾗｲﾀー =new StreamWriter(ﾌｧｲﾙの場所, false, 文字ｺーﾄﾞ)) {
+            using(var ｽﾄﾘーﾑﾗｲﾀー =new StreamWriter(ﾌｧｲﾙの場所, 偽, 文字ｺーﾄﾞ)) {
                 ｽﾄﾘーﾑﾗｲﾀー.Write(読み込みﾊﾞｯﾌｧー);
             }
-            return true;
+            return 真;
         }
 
-        static void Main(string[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
+        static void Main(文字列[] ｺﾏﾝﾄﾞﾗｲﾝ引数)
         {
-            var 文字ｺーﾄﾞ = new System.Text.UTF8Encoding(false);
+            var 文字ｺーﾄﾞ = new System.Text.UTF8Encoding(偽);
             その後 どうするんですか = その後.何もしないんですよ;
             if (0 == ｺﾏﾝﾄﾞﾗｲﾝ引数.Length) {
                 読み書き(虚無, 文字ｺーﾄﾞ, その後.何もしないんですよ);
@@ -86,7 +94,7 @@ namespace ﾒｲﾝ {
                          どうするんですか = その後.書き込むんですよ;
                      }
                      else if(分離された引数.Equals("-bom")) {
-                         文字ｺーﾄﾞ = new System.Text.UTF8Encoding(true);
+                         文字ｺーﾄﾞ = new System.Text.UTF8Encoding(真);
                      }
                      continue;
                 }
