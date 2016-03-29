@@ -2,11 +2,11 @@
 if [ "x" = "x${OUT}" ];then
 	OUT=shimonizer.sh
 fi
-SRC_URL=https://raw.githubusercontent.com/sazae657/Shimonizer/master/Shimonizer.cs
-SRC=../Shimonizer.cs
+SRC_URL=https://raw.githubusercontent.com/sazae657/Shimonizer/master/Shimonizer/Shimonizer.cs
+SRC=../Shimonizer/Shimonizer.cs
 cat template/aot_heaer.txt >${OUT}
 if [ "x-online" = "x$@" ];then
-	curl ${SRC_URL} >.tmp.cs 
+	curl ${SRC_URL} >.tmp.cs
 else
 	cat ${SRC}  >.tmp.cs
 fi
