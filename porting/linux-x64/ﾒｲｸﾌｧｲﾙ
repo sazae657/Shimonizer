@@ -1,0 +1,24 @@
+#  vim: ff=unix ft=make
+OBJ=ｼﾓﾅｲｻﾞー.o 全角ﾃーﾌﾞﾙ.o 半角ﾃーﾌﾞﾙ.o
+
+TARGET=libｼﾓﾅｲｻﾞー.a
+TEST=ﾃｽﾄ
+
+AS=as
+AR=ar
+
+.s.o:
+	$(AS) $< -o $@
+
+all: $(TEST)
+
+$(TARGET): $(OBJ)
+	$(AR) rc $(TARGET) $(OBJ)
+
+$(TEST): $(TARGET)
+	$(CC) -o $(TEST) $(TEST).c -L. -lｼﾓﾅｲｻﾞー
+
+
+clean:
+	-rm $(OBJ) $(TARGET) $(TEST)
+
