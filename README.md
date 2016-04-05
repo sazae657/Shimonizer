@@ -10,7 +10,9 @@ ex.
 
 引数無しの場合は標準入力をｼﾓﾅｲｽﾞします
 
+[![Build Status](https://travis-ci.org/sazae657/Shimonizer.svg?branch=master)](https://travis-ci.org/sazae657/Shimonizer)
 
+---
 #### JITｼﾓﾅｲｻﾞー
 % cd extras/
 
@@ -25,6 +27,7 @@ uuencodeと潤沢なﾏｼーﾝﾘｿーｽと広い心が必要です
 
 Mono 3.12.1@OpenBSD 5.8 で動作確認
 
+---
 #### 移植版
 
 porting/ 以下に各種移植版があります
