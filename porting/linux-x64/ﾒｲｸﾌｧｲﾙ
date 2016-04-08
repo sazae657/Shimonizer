@@ -18,6 +18,8 @@ $(TARGET): $(OBJ)
 $(TEST): $(TARGET)
 	$(CC) -o $(TEST) $(TEST).c -L. -lｼﾓﾅｲｻﾞー
 
+run:
+	gdb -ex=run --batch $(TEST)
 
 clean:
 	-rm $(OBJ) $(TARGET) $(TEST)
