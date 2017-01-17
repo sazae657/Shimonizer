@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ "x" = "x${OUT}" ];then
 	OUT=shimonizer.sh
 fi

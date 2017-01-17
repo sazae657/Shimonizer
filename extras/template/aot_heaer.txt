@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 EMP=""
 which uuencode >/dev/null 2>&1	|| EMP="uuencode"
 which uudecode >/dev/null 2>&1	|| EMP="uudecode"

@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 EXE=svchost.exe
 SRC=Shimonizer/Shimonizer.cs
 if [ ! -f ${EXE} ] || [ ${SRC} -nt ${EXE} ] ; then
