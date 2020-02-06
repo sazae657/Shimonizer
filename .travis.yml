@@ -1,2 +1,7 @@
 language: csharp
 solution: Shimonizer.sln
+dotnet: 3.1.101
+script:
+  - dotnet restore
+  - dotnet build
+
